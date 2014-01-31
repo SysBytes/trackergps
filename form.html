@@ -17,7 +17,7 @@
 <body>
 <div id="contenedor">
     <div id="logo"><img src="img/logo_tracker_l.png" alt="GPS Tracker" title="GPS Tracker"></div>
-    <div id="formulario1" >
+    <div id="formulario1" style="" >
         <div id="contenido">
             <p class="titulo">MATRIZ DE RETORNO DE INVERSION</p>
             <form id="formulario">
@@ -38,49 +38,49 @@
                 <div class="control-group">
                     <label for="campo">Monto Costo Promedio</label>
                     <div class="control">
-                        <input type="number" min="1" class="small" value="" name="cos_pro" id="cos_pro" tabindex="3">
+                        <input type="number" min="1" class="medium" value="" name="cos_pro" id="cos_pro" tabindex="3">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label for="campo">% Prima Seguro</label>
                     <div class="control">
-                        <input type="number" min="1" class="small" value="" name="pri_seg" id="pri_seg" tabindex="4">
+                        <input type="number" min="1" class="medium" value="" name="pri_seg" id="pri_seg" tabindex="4">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label for="campo">Gastos Prom. Mantenimiento Mensual Veh.</label>
                     <div class="control">
-                        <input type="number" min="1" class="small" value="" name="gas_man" id="gas_man" tabindex="5">
+                        <input type="number" min="1" class="medium" value="" name="gas_man" id="gas_man" tabindex="5">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label for="campo">Gastos Prom. Combustible Mensual Veh.</label>
                     <div class="control">
-                        <input type="number" min="1" class="small" value="" name="gas_gas" id="gas_gas" tabindex="6">
+                        <input type="number" min="1" class="medium" value="" name="gas_gas" id="gas_gas" tabindex="6">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label for="campo">Salario Prom. Mensual por Conductor</label>
                     <div class="control">
-                        <input type="number" min="1" class="small" value="" name="sal_con" id="sal_con" tabindex="7">
+                        <input type="number" min="1" class="medium" value="" name="sal_con" id="sal_con" tabindex="7">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label for="campo">Gastos Prom. Mensual Sobretiempo Conductor</label>
                     <div class="control">
-                        <input type="number" min="1" class="small" value="" name="gas_sob" id="gas_sob" tabindex="8">
+                        <input type="number" min="1" class="medium" value="" name="gas_sob" id="gas_sob" tabindex="8">
                     </div>
                 </div>
 
                  <div class="control-group">
                     <label for="campo">Gastos Prom. Comunicaciones (Celular, Radio, etc)</label>
                     <div class="control">
-                        <input type="number" min="1" class="small" value="" name="gas_com" id="gas_com" tabindex="9">
+                        <input type="number" min="1" class="medium" value="" name="gas_com" id="gas_com" tabindex="9">
                     </div>
                 </div>
 
@@ -141,7 +141,7 @@
                 <div class="control-group2">
                     <label for="campo"><b>Reducción Gastos Horas Extras/Viaticos Choferes(%)</b><br>Sobretiempo/Conductor/mes Bs./mes</label>
                     <div class="control">
-                        <input type="number" min="1" class="small" value="" name="red_gas_hor" id="red_gas_hor" tabindex="17">
+                        <input type="number" min="1" class="small" value="" name="red_gas_sob" id="red_gas_sob" tabindex="17">
                     </div>
                 </div>
 
@@ -159,17 +159,16 @@
                     </div>
                 </div>
 
-                
             </form>
 
         </div>
-        <a href="#" id="calcular">
+        <a href="#" id="calcular" onclick="javascript:calculoFinal();">
         <div id="botones">
             <span class="boton">CALCULAR</span>
         </div>
         </a>
     </div>
-    <div id="formulario2" style="display:none">
+    <div id="formulario2" style="display:none;">
         <div id="contenido">
             <p class="titulo">MATRIZ DE RETORNO DE INVERSION</p>
             <table id="resultados" width="100%" border="0">
@@ -200,8 +199,8 @@
                 </tr>
                 <tr height="35px">
                     <td>Reducción en gastos de Horas Extras/ Viaticos Choferes</td>
-                    <td><input id="redGastoExtra_V" type="text" value="" readonly="readonly"></td>
-                    <td><input id="redGastoExtra_F" type="text" value="" readonly="readonly"></td>
+                    <td><input id="redGastoSobre_V" type="text" value="" readonly="readonly"></td>
+                    <td><input id="redGastoSobre_F" type="text" value="" readonly="readonly"></td>
                 </tr>
                 <tr height="35px">
                     <td>Reducción en gastos de Comunicaciones (Teléfonos)</td>
@@ -213,9 +212,14 @@
                     <td><input id="redGastoOtros_V" type="text" value="" readonly="readonly"></td>
                     <td><input id="redGastoOtros_F" type="text" value="" readonly="readonly"></td>
                 </tr> 
+                <tr height="35px">
+                    <td align="right"><b>Total:</b></td>
+                    <td><input id="redTotal_V" type="text" value="" readonly="readonly"></td>
+                    <td><input id="redTotal_F" type="text" value="" readonly="readonly"></td>
+                </tr> 
             </table>
         </div>
-        <a href="#">
+        <a href="#" onclick="javascript:regresar();">
         <div id="botones">
             <span class="boton">REGRESAR</span>
         </div>
@@ -248,6 +252,7 @@
     }
 
     function calculoFinal(){
+
         var cantVehiculo = parseInt($("#can_veh").val());
         var cantOperador = parseInt($("#can_ope").val());
 
@@ -258,15 +263,19 @@
 
         var redGastoSeguro_V = ((costoPromedio*primaSeguro)*(redGastoSeguro/100))/12;
         $("#redGastoSeguro_V").val(redGastoSeguro_V);
-        $("#redGastoSeguro_F").val(redGastoSeguro_V*cantVehiculo);
+        var redGastoSeguro_F = redGastoSeguro_V*cantVehiculo;
+        $("#redGastoSeguro_F").val(redGastoSeguro_F);
         
         //Mantenimiento
         var gastoMantenimiento = parseInt($("#gas_man").val());
         var redGastoMantenimiento = parseInt($("#red_gas_man").val());
+
         
         var redGastoMantenimiento_V = gastoMantenimiento*(redGastoMantenimiento/100);
+          alert(redGastoMantenimiento_V);
         $("redGastoMantenimiento_V").val(redGastoMantenimiento_V);
-        $("redGastoMantenimiento_F").val(redGastoMantenimiento_V*cantVehiculo);
+        var redGastoMantenimiento_F = redGastoMantenimiento_V*cantVehiculo;
+        $("redGastoMantenimiento_F").val(redGastoMantenimiento_F);
 
         //Gasto Combustible
         var gastoCombustible = parseInt($("#gas_gas").val());
@@ -274,7 +283,8 @@
         
         var redGastoCombustible_V = gastoCombustible*(redGastoCombustible/100);
         $("redGastoCombustible_V").val(redGastoCombustible_V);
-        $("redGastoCombustible_F").val(redGastoCombustible_V*cantVehiculo);
+        var redGastoCombustible_F = redGastoCombustible_V*cantVehiculo;
+        $("redGastoCombustible_F").val(redGastoCombustible_F);
 
         //Gasto Salario
         var gastoSalario = parseInt($("#sal_con").val());
@@ -282,8 +292,39 @@
         
         var redGastoSalario_V = gastoSalario*(redGastoSalario/100);
         $("redGastoNomina_V").val(redGastoSalario_V);
-        $("redGastoNomina_F").val(redGastoSalario_V*cantOperador);
+        var redGastoNomina_F = redGastoSalario_V*cantOperador;
+        $("redGastoNomina_F").val(redGastoNomina_F);
         
+        //Gasto Extras
+        var gastoSobre = parseInt($("#gas_sob").val());
+        var redGastoSobre = parseInt($("#red_gas_sob").val());
+        
+        var redGastoSobre_V = gastoSobre*(redGastoSobre/100);
+        $("redGastoSobre_V").val(redGastoSobre_V);
+        var redGastoSobre_F = redGastoSobre_V*cantOperador;
+        $("redGastoSobre_F").val(redGastoSobre_F);
+
+        //Gasto Comunicacion
+        var gastoComunicacion = parseInt($("#gas_com").val());
+        var redGastoComunicacion = parseInt($("#red_gas_com").val());
+        
+        var redGastoComunicacion_V = gastoComunicacion*(redGastoComunicacion/100);
+        $("redGastoComunicacion_V").val(redGastoComunicacion_V);
+        var redGastoComunicacion_F = redGastoComunicacion_V*cantVehiculo
+        $("redGastoComunicacion_F").val(redGastoComunicacion_F);
+
+        //Totales
+        $("redTotal_V").val(redGastoSeguro_V+redGastoMantenimiento_V+redGastoCombustible_V+redGastoSalario_V+redGastoSobre_V+redGastoComunicacion_V);
+        $("redTotal_F").val(redGastoSeguro_F+redGastoMantenimiento_F+redGastoCombustible_F+redGastoNomina_F+redGastoSobre_F+redGastoComunicacion_F);
+        
+        $("#formulario2").show();
+        $("#formulario1").hide();
+
+    }
+
+    function regresar(){
+        $("#formulario2").hide();
+        $("#formulario1").show();
     }
 
     $(document).ready(function(){

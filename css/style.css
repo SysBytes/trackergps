@@ -1,4 +1,4 @@
-@media screen and (max-device-width : 480px) {         
+@media screen and (max-device-width : 420px) {         
     #sidebar{             
     display:none;             
     }                 
@@ -9,10 +9,12 @@
 }
 
 html, body {
-    max-width: 480px;
+    max-width: 420px;
     max-height: 960px;
     height: 100%;
     font-family: AmbleFontWeb, "Trebuchet MS", Myriad;
+    margin: 0px;
+    padding: 0px;
 }
 a:focus {
   outline: thin dotted #333;
@@ -26,7 +28,7 @@ a:active {
   text-decoration: none;
 }
 h4{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     font-style: oblique;
     color: #666666;
@@ -42,13 +44,13 @@ input[readonly]{
     background-color: #CCCCCC;
 }
 input.small {
-    width: 20%
+    width: 25%
 }
 input.medium {
-    width: 40%
+    width: 45%
 }
 #contenedor{
-    max-width: 480px;
+    max-width: 420px;
     max-height: 960px;
     position: absolute;
     margin: 0px;
@@ -100,21 +102,16 @@ input.medium {
 }
 #contenido label{
     float: left;
-    font-size: 12px;
+    font-size: 11px;
     text-align: right;
-    width: 54%;
+    width: 60%;
     border: 0px solid #F40;
 }
 #contenido div div.control{
-    margin-left: 55%;
-}
-#contenido div div.help{
-    position: absolute;
-    font-size: 13px;
+    margin-left: 61%;
 }
 #botones {
     margin-top: 50px;
-    max-width: 480px;
     width: 100%;
     background: url(../img/bg-boton.png) repeat;
     text-align: center;
@@ -127,4 +124,11 @@ div.separador {
     margin: 7px;
     width: 90%;
     border: 1px #999 solid;
+}
+#resultados{
+    font-size: 11px;
+}
+
+#resultados tr{
+    padding-top: 50px;
 }

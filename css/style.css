@@ -9,7 +9,8 @@
 }
 
 html, body {
-    max-width: 640px;
+    max-width: 480px;
+    max-height: 960px;
     height: 100%;
     font-family: AmbleFontWeb, "Trebuchet MS", Myriad;
 }
@@ -32,7 +33,7 @@ h4{
     margin: 0px;
 }
 input {
-    font-size: 14px;
+    font-size: 12px;
     height: 19px;
     background-color: #FFFFCC;
     border: 1px solid #CCC;
@@ -44,10 +45,10 @@ input.small {
     width: 20%
 }
 input.medium {
-    width: 30%
+    width: 40%
 }
 #contenedor{
-    max-width: 640px;
+    max-width: 480px;
     max-height: 960px;
     position: absolute;
     margin: 0px;
@@ -56,28 +57,27 @@ input.medium {
 }
 
 #logo {
+    position: absolute;
     width: 100%;
     left: 50%;
+    margin-left: -151px;
+    margin-top: -10px;
+    margin-bottom: 100px;
+    display: block;
 }
 .logo {
-  width: 462px;
   margin: 0 auto;
   display: block;
 }
 #contenido {
-    margin: auto;
+    margin-top: 100px;
     width: 100%;
     height: auto;
-}
-#contenido:after{
-    width: 100%;
-    height:150px;
-    display:block;
-    clear:both;
+    display: block;
 }
 
 #contenido p {
-    font-size: 14px;
+    font-size: 13px;
     color: #B2BB1C;
     text-align: center;
 }
@@ -87,12 +87,12 @@ input.medium {
     text-transform: uppercase;
 }
 #contenido div.control-group{
-    width: 99%;
+    width: 100%;
     margin-top: 10px;
     border: 0px solid #F04;
 }
 #contenido div.control-group2{
-    width: 99%;
+    width: 100%;
     height: auto;
     margin-top: 10px;
     margin-bottom: 26px;
@@ -100,25 +100,21 @@ input.medium {
 }
 #contenido label{
     float: left;
-    font-size: 13px;
+    font-size: 12px;
     text-align: right;
-    width: 52%;
+    width: 54%;
     border: 0px solid #F40;
 }
 #contenido div div.control{
-    margin-left: 54%;
+    margin-left: 55%;
 }
 #contenido div div.help{
     position: absolute;
     font-size: 13px;
 }
-
 #botones {
-    margin: 0px;
-    max-width: 640px;
-    top: 100%;
-    /*margin-top: -41px;*/
-    /*position: absolute;*/
+    margin-top: 50px;
+    max-width: 480px;
     width: 100%;
     background: url(../img/bg-boton.png) repeat;
     text-align: center;
